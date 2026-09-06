@@ -257,6 +257,42 @@
 
   @media(max-width:600px){.timeline-rail{left:14px;}.timeline-item{padding-left:42px;}.timeline-dot{left:7px;width:14px;height:14px;}}
 
+  
+  /* Shooting star */
+  .wish-star{position:fixed;top:10%;left:-10%;width:4px;height:4px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px 3px rgba(242,201,138,.9);z-index:8;pointer-events:none;opacity:0;animation:wishFly 5s ease-in-out 4s forwards;}
+  .wish-star::after{content:'';position:absolute;top:1px;right:2px;width:150px;height:1.5px;background:linear-gradient(90deg,rgba(242,201,138,.8),transparent);transform:rotate(15deg);transform-origin:right center;}
+  @keyframes wishFly{0%{transform:translate(0,0);opacity:0;}8%{opacity:1;}45%{transform:translate(120vw,35vh);opacity:1;}50%{opacity:0;}100%{transform:translate(120vw,35vh);opacity:0;}}
+  .wish-caption{position:fixed;bottom:20vh;left:50%;transform:translateX(-50%);text-align:center;font-size:13px;color:rgba(242,201,138,.8);font-style:italic;letter-spacing:.06em;z-index:8;opacity:0;transition:opacity 1.5s ease;pointer-events:none;white-space:nowrap;}
+  .wish-caption.show{opacity:1;}
+
+  /* 5 things counter */
+  .things-counter{margin:40px auto 0;text-align:center;}
+  .things-count{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,10vw,72px);font-weight:600;color:var(--gold);line-height:1.1;}
+  .things-label{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);margin-bottom:20px;}
+  .things-item{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px,4vw,28px);color:var(--cream);margin:8px 0;opacity:0;transform:translateY(10px);transition:opacity .8s ease, transform .8s ease;min-height:2px;}
+  .things-item.show{opacity:1;transform:translateY(0);}
+
+  /* Forever question */
+  .forever-wrap{margin:36px auto 0;max-width:420px;}
+  .forever-question{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,4.5vw,30px);color:var(--cream);margin-bottom:18px;}
+  .forever-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+  .forever-btn{background:transparent;border:1px solid rgba(242,201,138,.55);color:var(--gold);padding:12px 32px;border-radius:999px;font-size:14px;letter-spacing:.04em;cursor:pointer;font-family:'Manrope',sans-serif;transition:background .3s ease,transform .2s ease,box-shadow .3s ease;}
+  .forever-btn:hover{background:rgba(242,201,138,.15);transform:scale(1.05);}
+  .forever-btn.main{background:rgba(242,201,138,.2);border-color:var(--gold);color:var(--gold);}
+  .forever-answer{font-size:clamp(18px,3.5vw,24px);font-style:italic;color:var(--rose);margin-top:16px;font-family:'Cormorant Garamond',serif;opacity:0;transition:opacity 1s ease;min-height:34px;}
+  .forever-answer.show{opacity:1;}
+
+  /* Future letter */
+  .future-letter{margin:36px auto 0;max-width:470px;padding:24px 28px;border-radius:16px;border:1px solid rgba(240,184,191,.35);background:rgba(251,241,238,.05);backdrop-filter:blur(2px);text-align:left;opacity:0;transform:translateY(14px);transition:opacity .9s ease, transform .9s ease;}
+  .future-letter.show{opacity:1;transform:translateY(0);}
+  .future-letter-head{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--gold);margin:0 0 10px;}
+  .future-letter-body{font-size:14px;color:var(--soft);margin:0;line-height:1.6;}
+
+  /* Day flip-up */
+  .day-flip{margin:20px auto 0;text-align:center;}
+  .day-flip-num{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,9vw,60px);font-weight:600;color:var(--gold);}
+  .day-flip-label{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);margin-top:4px;}
+
   @media (max-width:600px){ .dots{right:10px;gap:8px;} section{padding:10vh 7vw;} p{text-align:left;} }
 
   .intro-counter{opacity:0;font-size:clamp(22px,5vw,32px);font-family:"Cormorant Garamond",serif;font-weight:500;color:var(--gold);margin-top:18px;letter-spacing:.04em;animation:introFade 1.3s ease forwards .6s;line-height:1.3;}
@@ -298,6 +334,8 @@
 <div class="comet" style="animation-delay:0s;"></div>
 <div class="comet" style="top:24%;animation-delay:5s;animation-duration:18s;"></div>
 <div class="comet" style="top:60%;animation-delay:9s;animation-duration:16s;"></div>
+<div class="wish-star" id="wishStar"></div>
+<div class="wish-caption" id="wishCaption">I made a wish the day I met you. It came true. ✨</div>
 <div class="dots" id="dots"></div>
 
 <div class="page-curl"></div>
@@ -503,7 +541,15 @@
   <div class="inner">
     <div class="chapter-tag"><span class="chapter-num">an interlude</span><div class="chapter-rule"></div></div>
     <h2>Do you remember me?</h2>
-    <p>In the movie, they forget each other's names but somehow never forget the feeling. Let's test if you remember the feeling too 😋 Tap each card to flip it.</p>
+    <p>In the movie, they forget each other's names but somehow never forget the feeling. Let's test if you remember the feeling too 😋 Tap each cards to flip it.</p>
+<div class="things-counter" id="thingsCounter">
+  <div class="things-label">5 things I'd change about you</div>
+  <div class="things-item" data-idx="0">1. nothing</div>
+  <div class="things-item" data-idx="1">2. nothing</div>
+  <div class="things-item" data-idx="2">3. nothing</div>
+  <div class="things-item" data-idx="3">4. nothing</div>
+  <div class="things-item" data-idx="4">5. nothing 💗</div>
+</div>
     <div class="qa-wrap" id="qaWrap"></div>
   </div>
 </section>
@@ -556,12 +602,28 @@
       <span class="recap-item">1 goddess</span>
     </div>
 
-    <div class="reply-wrap">
+    <div class="reply-wrap" style="margin-top:40px;">
       <p style="text-align:center;color:var(--soft);font-size:13px;margin-top:24px;">write something back to me, if you want 🤗</p>
       <textarea id="replyBox" placeholder="type here..."></textarea>
       <div style="text-align:center;"><button class="btn" id="sendReplyBtn">Send <span>💗</span></button></div>
       <p class="reply-msg" id="replyStatus" style="text-align:center;"></p>
       <div id="savedReply"></div>
+    </div>
+    <div class="forever-wrap" id="foreverWrap">
+      <div class="forever-question">Shubhi, can I keep you forever?</div>
+      <div class="forever-btns">
+        <button class="forever-btn main" id="foreverBtnYes">obviously 💗</button>
+        <button class="forever-btn" id="foreverBtnKeep">can't say no 💛</button>
+      </div>
+      <div class="forever-answer" id="foreverAnswer"></div>
+    </div>
+    <div class="day-flip" id="dayFlip" style="display:none;">
+      <div class="day-flip-num" id="dayFlipNum">0</div>
+      <div class="day-flip-label">days — and counting 💜</div>
+    </div>
+    <div class="future-letter" id="futureLetter">
+      <p class="future-letter-head">— from future Adi</p>
+      <p class="future-letter-body">if you're reading this in some future year, I still love you. I always will. even if this page is gone, even if we're old and grey, even if you forget this ever existed — I won't forget you. not now, not ever. 🤍</p>
     </div>
     <div class="time-spent" id="timeSpent"></div>
     <div class="signature">adi &amp; shubi 💗</div>
@@ -1110,6 +1172,77 @@
     },{threshold:[0.3]});
     creditLines[0].closest('section').setAttribute('data-index','10');
     creditsObserver.observe(document.querySelector('[data-index="10"]'));
+  }
+
+
+  /* === SHOOTING STAR === */
+  var wishCaption = document.getElementById('wishCaption');
+  if(wishCaption){
+    setTimeout(function(){ wishCaption.classList.add('show'); }, 9000);
+  }
+
+  /* === 5 THINGS COUNTER === */
+  var thingsItems = document.querySelectorAll('.things-item');
+  if(thingsItems.length){
+    var thingsObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          var items = entry.target.querySelectorAll('.things-item');
+          items.forEach(function(item, i){
+            setTimeout(function(){ item.classList.add('show'); }, i*400);
+          });
+        }
+      });
+    },{threshold:[0.3]});
+    thingsObserver.observe(document.getElementById('thingsCounter'));
+  }
+
+  /* === FOREVER QUESTION + DAY FLIP === */
+  var foreverBtnYes = document.getElementById('foreverBtnYes');
+  var foreverBtnKeep = document.getElementById('foreverBtnKeep');
+  var foreverAnswer = document.getElementById('foreverAnswer');
+  var dayFlip = document.getElementById('dayFlip');
+  var dayFlipNum = document.getElementById('dayFlipNum');
+  function showForeverAnswer(msg){
+    foreverAnswer.textContent = msg;
+    foreverAnswer.classList.add('show');
+    // Show day flip-up counter
+    dayFlip.style.display = '';
+    var target = 365;
+    var current = 0;
+    var flipInterval = setInterval(function(){
+      if(current < target){
+        current += 3;
+        if(current > target) current = target;
+        dayFlipNum.textContent = current;
+      } else {
+        clearInterval(flipInterval);
+        dayFlipNum.textContent = target;
+      }
+    }, 12);
+    // Trigger big heart burst
+    for(var fi=0;fi<20;fi++) setTimeout(function(){ spawnHeart(); }, fi*60);
+  }
+  if(foreverBtnYes){
+    foreverBtnYes.addEventListener('click', function(){
+      showForeverAnswer('obviously I was going to say yes 🤍');
+    });
+  }
+  if(foreverBtnKeep){
+    foreverBtnKeep.addEventListener('click', function(){
+      showForeverAnswer('good choice, because I wasn't asking 😌💗');
+    });
+  }
+
+  /* === FUTURE LETTER FADE IN === */
+  var futureLetter = document.getElementById('futureLetter');
+  if(futureLetter){
+    var futureObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting) entry.target.classList.add('show');
+      });
+    },{threshold:[0.3]});
+    futureObserver.observe(futureLetter);
   }
 
   /* === REASON COUNTER === */
