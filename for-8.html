@@ -943,6 +943,95 @@
     typingObserver.observe(epiloguePara.closest('section'));
   }
 
+
+  /* === ENVELOPE UNFOLD === */
+  var envelopeWrap = document.getElementById('envelopeWrap');
+  function openEnvelope(){
+    if(!envelopeWrap) return;
+    envelopeWrap.classList.add('open');
+    setTimeout(function(){
+      var epilogueHeart = document.getElementById('epilogueHeart');
+      var heartHint = document.getElementById('heartHint');
+      if(epilogueHeart) epilogueHeart.style.display = '';
+      if(heartHint) heartHint.style.display = '';
+    }, 800);
+  }
+
+  /* === FLOATING LOVE NOTES === */
+  var loveNotes = ['teri smile meri weakness hai','I\'d choose you every time','you\'re my favorite notification','tu meri jaan hai, literally','I still get butterflies','tu meri peace hai','forever isn\'t long enough','teri aankhon mein ghar hai mera','you make everything better','I\'m obsessed with you','best friends forever, and more','teri awaaz sun ke din ban jaata hai'];
+  var notesActive = true;
+  function spawnLoveNote(){
+    if(!notesActive) return;
+    var note = document.createElement('div');
+    note.className = 'love-note';
+    note.textContent = loveNotes[Math.floor(Math.random()*loveNotes.length)];
+    var startY = 10 + Math.random()*70;
+    note.style.top = startY + '%';
+    note.style.left = '-200px';
+    var dx = window.innerWidth + 300;
+    var dy = (Math.random()-0.5)*80;
+    note.style.setProperty('--note-dx', dx + 'px');
+    note.style.setProperty('--note-dy', dy + 'px');
+    var duration = 12 + Math.random()*8;
+    note.style.animationDuration = duration + 's';
+    document.body.appendChild(note);
+    setTimeout(function(){ note.remove(); }, duration*1000);
+  }
+  setInterval(spawnLoveNote, 3000 + Math.random()*2000);
+
+  /* === CANDLE SPARK GAME === */
+  var candleFlame = document.getElementById('candleFlame');
+  var candleMsg = document.getElementById('candleMsg');
+  var candleEl = document.getElementById('candleEl');
+  var candleHP = 100;
+  var candleAlive = true;
+  if(candleFlame && candleEl){
+    function candleFlicker(){
+      if(!candleAlive) return;
+      candleHP = Math.max(0, candleHP - 1);
+      var scale = 0.3 + (candleHP/100)*0.7;
+      candleFlame.style.transform = 'translateX(-50%) scale(' + scale + ')';
+      candleFlame.style.opacity = candleHP/100;
+      if(candleHP <= 0){
+        candleFlame.classList.add('out');
+        candleMsg.textContent = '"even when things go dark, I\'ll always find my way back to you"';
+        candleMsg.classList.add('show');
+        candleAlive = false;
+        for(var si=0;si<3;si++){
+          var smoke = document.createElement('div');
+          smoke.className = 'candle-smoke';
+          smoke.style.animationDelay = (si*0.3)+'s';
+          candleEl.appendChild(smoke);
+          setTimeout(function(s){ return function(){ s.remove(); }; }(smoke), 2000);
+        }
+        setTimeout(function(){
+          candleHP = 100;
+          candleFlame.classList.remove('out');
+          candleFlame.style.opacity = '';
+          candleFlame.style.transform = '';
+          candleMsg.textContent = '"and just like that, the light comes back"';
+          setTimeout(function(){ candleMsg.textContent = ''; candleMsg.classList.remove('show'); }, 3000);
+          candleAlive = true;
+        }, 3000);
+      }
+    }
+    setInterval(candleFlicker, 200);
+    candleEl.addEventListener('click', function(){ candleHP = Math.min(100, candleHP + 15); });
+    candleEl.addEventListener('touchstart', function(){ candleHP = Math.min(100, candleHP + 15); });
+  }
+
+  /* === GENTLE PARALLAX === */
+  window.addEventListener('scroll', function(){
+    requestAnimationFrame(function(){
+      document.querySelectorAll('.backdrop').forEach(function(b){
+        var r = b.parentElement.getBoundingClientRect();
+        if(r.top < window.innerHeight && r.bottom > 0){
+          b.style.transform = 'translateY(' + (r.top*0.08) + 'px)';
+        }
+      });
+    });
+  },{passive:true});
+
   /* === HEART: ACCELERATE + FLOATING HEARTS === */
   var epilogueHeart = document.getElementById('epilogueHeart');
   var heartHoverStart = 0;
