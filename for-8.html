@@ -696,34 +696,7 @@
   },{threshold:[0.5]});
   sections.forEach(function(s){ chimeObserver.observe(s); });
 
-  /* === HEARTBEAT ACCELERATION ON HOVER/HOLD === */
-  const epilogueHeart = document.getElementById('epilogueHeart');
-  let hoverStart = 0;
-  if(epilogueHeart){
-    epilogueHeart.addEventListener('mouseenter',function(){
-      hoverStart = Date.now();
-    });
-    epilogueHeart.addEventListener('mousemove',function(){
-      const elapsed = Date.now() - hoverStart;
-      const faster = Math.max(0.15, 1.2 - elapsed/8000);
-      epilogueHeart.querySelector('svg').style.animationDuration = faster + 's';
-    });
-    epilogueHeart.addEventListener('mouseleave',function(){
-      epilogueHeart.querySelector('svg').style.animationDuration = '';
-    });
-    /* Touch support for mobile */
-    epilogueHeart.addEventListener('touchstart',function(){
-      hoverStart = Date.now();
-    },{passive:true});
-    epilogueHeart.addEventListener('touchmove',function(){
-      const elapsed = Date.now() - hoverStart;
-      const faster = Math.max(0.15, 1.2 - elapsed/8000);
-      epilogueHeart.querySelector('svg').style.animationDuration = faster + 's';
-    },{passive:true});
-    epilogueHeart.addEventListener('touchend',function(){
-      epilogueHeart.querySelector('svg').style.animationDuration = '';
-    });
-  }
+
 
   /* === CONFETTI / HEART-BURST ON SEND === */
   document.getElementById('sendReplyBtn').addEventListener('click', function(){
@@ -832,7 +805,9 @@
     typingObserver.observe(epiloguePara.closest('section'));
   }
 
-  /* === FLOATING HEARTS ON HEART TAP === */
+  /* === HEART: ACCELERATE + FLOATING HEARTS === */
+  var epilogueHeart = document.getElementById('epilogueHeart');
+  var heartHoverStart = 0;
   if(epilogueHeart){
     function spawnHeart(){
       var h = document.createElement('div');
@@ -851,11 +826,21 @@
     function burstHearts(){
       for(var i=0;i<6;i++) setTimeout(function(){ spawnHeart(); }, i*80);
     }
+    function accelerateHeart(){
+      var elapsed = Date.now() - heartHoverStart;
+      var faster = Math.max(0.15, 1.2 - elapsed/8000);
+      epilogueHeart.querySelector('svg').style.animationDuration = faster + 's';
+    }
+    function resetHeartSpeed(){
+      epilogueHeart.querySelector('svg').style.animationDuration = '';
+    }
+    epilogueHeart.addEventListener('mouseenter', function(){ heartHoverStart = Date.now(); });
+    epilogueHeart.addEventListener('mousemove', accelerateHeart);
+    epilogueHeart.addEventListener('mouseleave', resetHeartSpeed);
+    epilogueHeart.addEventListener('touchstart', function(){ heartHoverStart = Date.now(); });
+    epilogueHeart.addEventListener('touchmove', accelerateHeart);
+    epilogueHeart.addEventListener('touchend', function(){ resetHeartSpeed(); burstHearts(); });
     epilogueHeart.addEventListener('click', burstHearts);
-    epilogueHeart.addEventListener('touchend', function(e){
-      e.preventDefault();
-      burstHearts();
-    });
   }
 
   /* === TIME SPENT TRACKER === */
