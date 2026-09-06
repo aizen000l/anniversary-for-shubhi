@@ -758,11 +758,18 @@
 
   /* === SCROLL PROGRESS BAR === */
   const scrollProgress = document.getElementById('scrollProgress');
+  var rafPending = false;
   window.addEventListener('scroll', function(){
-    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    var pct = (scrollTop / scrollHeight) * 100;
-    scrollProgress.style.width = pct + '%';
+    if(!rafPending){
+      rafPending = true;
+      requestAnimationFrame(function(){
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var pct = (scrollTop / scrollHeight) * 100;
+        scrollProgress.style.width = pct + '%';
+        rafPending = false;
+      });
+    }
   },{passive:true});
 
   /* === LETTERBOX CHAPTER TEXT === */
@@ -832,19 +839,22 @@
       h.className = 'float-heart';
       h.textContent = '\u2665';
       var rect = epilogueHeart.getBoundingClientRect();
-      h.style.left = (rect.left + rect.width/2 + (Math.random()*30-15)) + 'px';
-      h.style.top = (rect.top) + 'px';
+      h.style.left = (rect.left + rect.width/2 - 10 + (Math.random()*20-10)) + 'px';
+      h.style.top = (rect.top + window.scrollY) + 'px';
       h.style.color = ['#f0b8bf','#e8637a','#f2c98a','#fbf1ee'][Math.floor(Math.random()*4)];
-      h.style.fontSize = (14 + Math.random()*14) + 'px';
+      h.style.fontSize = (16 + Math.random()*12) + 'px';
+      h.style.position = 'absolute';
+      h.style.zIndex = '10';
       document.body.appendChild(h);
       setTimeout(function(){ h.remove(); }, 1500);
     }
-    epilogueHeart.addEventListener('click', function(){
+    function burstHearts(){
       for(var i=0;i<6;i++) setTimeout(function(){ spawnHeart(); }, i*80);
-    });
-    epilogueHeart.addEventListener('touchstart', function(e){
+    }
+    epilogueHeart.addEventListener('click', burstHearts);
+    epilogueHeart.addEventListener('touchend', function(e){
       e.preventDefault();
-      for(var i=0;i<6;i++) setTimeout(function(){ spawnHeart(); }, i*80);
+      burstHearts();
     });
   }
 
@@ -864,15 +874,7 @@
     setTimeout(function(){ timeSpentEl.classList.add('visible'); }, 3000);
   }
 
-  /* === WARMING BACKGROUND ON SCROLL === */
-  window.addEventListener('scroll', function(){
-    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    var maxScroll = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    var progress = Math.min(scrollTop / maxScroll, 1);
-    var warmHue = progress * 15;
-    var warmSat = 1 + progress * 0.15;
-    document.body.style.filter = 'hue-rotate(' + warmHue + 'deg) saturate(' + warmSat + ')';
-  },{passive:true});
+
 
 </script>
 
