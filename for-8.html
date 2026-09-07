@@ -342,6 +342,17 @@
   .future-letter p{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,3.8vw,20px);color:var(--soft);line-height:1.8;margin:0 0 14px;font-style:italic;}
   .future-letter .future-sig{font-size:14px;color:var(--gold);letter-spacing:.08em;margin-top:20px;font-style:normal;}
 
+  .sticker{position:absolute;z-index:1;pointer-events:none;opacity:0.85;filter:drop-shadow(0 2px 8px rgba(0,0,0,.25));transition:opacity 1.2s ease;animation:stickerFloat 4s ease-in-out infinite alternate;}
+  @keyframes stickerFloat{0%{transform:translateY(0) rotate(-3deg);}100%{transform:translateY(-10px) rotate(3deg);}}
+  .sticker.tl{top:8%;left:5%;width:clamp(50px,12vw,80px);}
+  .sticker.tr{top:10%;right:5%;width:clamp(50px,12vw,80px);}
+  .sticker.bl{bottom:12%;left:8%;width:clamp(45px,10vw,70px);}
+  .sticker.br{bottom:15%;right:6%;width:clamp(45px,10vw,70px);}
+  .sticker.ml{top:40%;left:3%;width:clamp(40px,10vw,65px);}
+  .sticker.mr{top:35%;right:3%;width:clamp(40px,10vw,65px);}
+  .sticker.mid{top:50%;left:50%;width:clamp(50px,12vw,75px);transform:translateX(-50%);}
+  .sticker img{width:100%;height:auto;border-radius:12px;object-fit:contain;}
+
 </style>
 </head>
 <body>
@@ -389,6 +400,8 @@
     <polygon points="0,200 0,150 80,100 160,140 240,90 320,135 400,110 400,200" fill="#2a1533"/>
   </svg></div>
   <div class="inner">
+    <div class="sticker tl" style="animation-delay:0.5s"><img src="media/sticker2.gif" alt="" loading="lazy"></div>
+
     <div class="doodle tilt" data-tilt><svg viewBox="0 0 100 100"><circle cx="50" cy="55" r="30" fill="#f2c98a" opacity="0.9"/><circle cx="38" cy="48" r="4" fill="#241436"/><circle cx="62" cy="48" r="4" fill="#241436"/><path d="M40 62 Q50 70 60 62" stroke="#241436" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="28" cy="30" r="10" fill="#f2c98a" opacity="0.9"/><circle cx="72" cy="30" r="10" fill="#f2c98a" opacity="0.9"/></svg></div>
     <div class="chapter-tag"><span class="chapter-num">prologue</span><div class="chapter-rule"></div></div>
     <h1>Kataware-doki, but make it us</h1>
@@ -410,6 +423,8 @@
     <rect x="360" y="105" width="30" height="95" fill="#331c3d"/>
   </svg></div>
   <div class="inner">
+    <div class="sticker tr" style="animation-delay:0.2s"><img src="media/sticker3.gif" alt="" loading="lazy"></div>
+
     <div class="chapter-tag"><span class="chapter-num">chapter one</span><div class="chapter-rule"></div></div>
     <h2>Two names, tangled by fate</h2>
     <div class="polaroid" style="width:210px;"><img src="media/photo1.jpg" alt="us" loading="lazy"></div>
@@ -428,6 +443,8 @@
     <rect x="300" y="118" width="20" height="32" fill="#5a2a3f" opacity="0.7"/>
   </svg></div>
   <div class="inner">
+    <div class="sticker br" style="animation-delay:0.5s"><img src="media/sticker6.gif" alt="" loading="lazy"></div>
+
     <div class="chapter-tag"><span class="chapter-num">chapter two</span><div class="chapter-rule"></div></div>
     <h2>Die With A Smile</h2>
     <p>phir ek din bas aise hi maine tujhe wo reel bheja tha 'die with a smile' wala, koi bada reason nahi tha bas vibe thi😭 thodi der baad maine khud hi ek story bhi laga di, JVKE wala gaana daal ke, jaise bina bole hi kuch keh raha hun✨ humne is baare mein kabhi ek dusre se kuch bola nahi, zarurat bhi nahi thi, dono ko pata tha ki kuch toh badal gaya hai hum dono ke beech, wahi feeling jaise toofan aane se pehle hi pata chal jaata hai🫂 wahi din tha jab pura kissa hi "us" ki taraf mud gaya tha, mujhe abhi bhi wo din bilkul clearly yaad hai💗</p>
@@ -442,6 +459,8 @@
     <polygon points="40,200 90,200 90,180 130,180 130,160 170,160 170,140 210,140 210,120 250,120 250,100 290,100 290,200" fill="#3a1f45" opacity="0.8"/>
   </svg></div>
   <div class="inner">
+    <div class="sticker bl" style="animation-delay:0.7s"><img src="media/sticker4.gif" alt="" loading="lazy"></div>
+
     <div class="chapter-tag"><span class="chapter-num">chapter three</span><div class="chapter-rule"></div></div>
     <h2>The first kiss</h2>
     <div class="polaroid" style="width:210px;transform:rotate(4deg);"><img src="media/photo2.jpg" alt="us" loading="lazy"></div>
@@ -461,6 +480,8 @@
     <line x1="280" y1="35" x2="330" y2="65" stroke="#f2c98a" stroke-width="0.5" opacity="0.5"/>
   </svg></div>
   <div class="inner">
+    <div class="sticker tr" style="animation-delay:0.3s"><img src="media/sticker1.gif" alt="" loading="lazy"></div>
+
     <div class="chapter-tag"><span class="chapter-num">chapter four</span><div class="chapter-rule"></div></div>
     <h2>Every little reason</h2>
     <p>teri smile itni angelic hai yaar, main usse words mein describe hi nahi kar sakta fr fr💗 teri cheeks sabse zyada pasand hai mujhe, itni soft hain ki bas dekhte hi rehne ka mann karta hai, tu itni pretty hai ki lagta hai kisi ne banate waqt bhi show off kiya hoga. hum dono ne bahut baar ladai ki hai, lekin tu har baar bina kuch bole mujhe maaf kar deti hai🫂 main tere liye itna clingy ho gaya hun, aur mujhe zaraaa bhi problem nahi hai🤗 tu jab gussa hoti hai tab bhi utni hi cute lagti hai jitni warna hoti hai✨ mujhe nahi pata kaise, but tu mujhe bina kuch kiye hi better insaan bana deti hai, bas apna hona hi kaafi hai iske liye🛐 kabhi kabhi sochta hun main itna lucky kaise hun ki mujhe tu mil gayi, duniya mein itne log hai but bas tu hi sahi lagti hai mujhe har baar😋 tu bas meri jaan hai, itna hi kehna hai😭</p>
@@ -472,6 +493,8 @@
 
 <section data-index="5">
   <div class="inner">
+    <div class="sticker tl" style="animation-delay:0.4s"><img src="media/sticker5.gif" alt="" loading="lazy"></div>
+
     <div class="chapter-tag"><span class="chapter-num">twenty-one reasons</span><div class="chapter-rule"></div></div>
     <h2>Why I love you</h2>
     <span class="reason-counter" id="reasonCounter">0</span>
@@ -505,6 +528,8 @@
 
 <section data-index="6">
   <div class="inner">
+    <div class="sticker br" style="animation-delay:0.9s"><img src="media/sticker8.gif" alt="" loading="lazy"></div>
+
     <div class="chapter-tag"><span class="chapter-num">twenty-one promises</span><div class="chapter-rule"></div></div>
     <h2>What I want to be better at</h2>
     <div class="list-wrap">
@@ -536,6 +561,8 @@
 
 <section data-index="8" style="min-height:auto;">
   <div class="inner">
+    <div class="sticker tl" style="animation-delay:0.6s"><img src="media/sticker9.gif" alt="" loading="lazy"></div>
+
     <div class="chapter-tag"><span class="chapter-num">our story so far</span><div class="chapter-rule"></div></div>
     <h2>How we got here</h2>
     <div class="timeline">
@@ -590,6 +617,8 @@
 
 <section data-index="8">
   <div class="inner">
+    <div class="sticker tr" style="animation-delay:0.8s"><img src="media/sticker10.gif" alt="" loading="lazy"></div>
+
     <div class="chapter-tag"><span class="chapter-num">an interlude</span><div class="chapter-rule"></div></div>
     <h2>Do you remember me?</h2>
     <p>In the movie, they forget each other's names but somehow never forget the feeling. Let's test if you remember the feeling too 😋 Tap each card to flip it.</p>
@@ -625,6 +654,8 @@
     <rect x="165" y="60" width="70" height="8" fill="#8f3a52" opacity="0.6"/>
   </svg></div>
   <div class="inner">
+    <div class="sticker br" style="animation-delay:1.2s"><img src="media/sticker7.gif" alt="" loading="lazy"></div>
+
     <div class="thread-wrap">
       <svg class="thread" viewBox="0 0 220 90">
         <path class="thread-path" id="threadPath" d="M 15 42 Q 110 -10 205 42" />
