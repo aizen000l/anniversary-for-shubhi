@@ -397,16 +397,13 @@
     <p class="intro-eyebrow">a film in six chapters</p>
     <h1 class="intro-title">for Shubhi</h1>
     <div class="intro-counter"><span class="days-num" id="daysNum"></span><span class="days-label">days together</span></div>
-    <p class="intro-tap">tap anywhere to begin</p>
-  </div>
-
-
-</div>
-
-    <div class="milestone-wrap" id="milestoneWrap">
+    <div class="milestone-wrap" id="milestoneWrap" style="opacity:1;margin-top:24px;">
       <div class="milestone-label">next milestone</div>
       <div class="milestone-text" id="milestoneText"></div>
     </div>
+    <p class="intro-tap">tap anywhere to begin</p>
+  </div>
+</div>
 
 <div class="shooting-star-overlay" id="shootingStarOverlay">
   <div class="shooting-star-trail"></div>
@@ -802,6 +799,7 @@
   const introCover=document.getElementById('introCover');
   introCover.addEventListener('click',()=>{
     introCover.classList.add('hide');
+
     document.body.style.overflow='';
     setTimeout(()=>{
       if(!playing && !hasRealAudio){
@@ -1506,7 +1504,7 @@
       }
     }
     // show after a delay
-    setTimeout(function(){ if(msWrap) msWrap.classList.add('visible'); }, 2000);
+  
   })();
 
   /* === SHARE BUTTON === */
