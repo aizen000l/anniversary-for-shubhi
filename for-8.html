@@ -353,8 +353,8 @@
   .sticker.mid{top:50%;left:50%;width:clamp(50px,12vw,75px);transform:translateX(-50%);}
   .sticker img{width:100%;height:auto;border-radius:12px;object-fit:contain;}
 
-  .kw-translate{display:inline-block;cursor:pointer;border-bottom:1px dashed var(--gold);transition:color .3s ease;}
-  .kw-translate:hover{color:var(--gold);}
+  .kw-translate{display:inline-block;cursor:pointer;color:var(--gold);border-bottom:2px dashed var(--gold);padding:0 4px;transition:all .3s ease;-webkit-tap-highlight-color:rgba(242,201,138,.3);touch-action:manipulation;}
+  .kw-translate:hover,.kw-translate:active{background:rgba(242,201,138,.15);transform:scale(1.03);}
   .kw-translation{display:none!important;font-family:"Cormorant Garamond",serif;font-size:clamp(13px,3vw,16px);color:var(--soft);font-style:italic;margin-top:10px;line-height:1.6;max-width:400px;margin-left:auto;margin-right:auto;animation:kwFadeIn .6s ease;}
   .kw-translation.show{display:block!important;}
   @keyframes kwFadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
@@ -445,7 +445,8 @@
 
     <div class="doodle tilt" data-tilt><svg viewBox="0 0 100 100"><circle cx="50" cy="55" r="30" fill="#f2c98a" opacity="0.9"/><circle cx="38" cy="48" r="4" fill="#241436"/><circle cx="62" cy="48" r="4" fill="#241436"/><path d="M40 62 Q50 70 60 62" stroke="#241436" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="28" cy="30" r="10" fill="#f2c98a" opacity="0.9"/><circle cx="72" cy="30" r="10" fill="#f2c98a" opacity="0.9"/></svg></div>
     <div class="chapter-tag"><span class="chapter-num">prologue</span><div class="chapter-rule"></div></div>
-    <h1><span class="kw-translate" id="kwToggle" style="cursor:pointer;">kataware-doki</span>, but make it us</h1>
+    <h1><span class="kw-translate" id="kwToggle">kataware-doki</span>, but make it us</h1>
+    <p style="font-size:10px;color:var(--gold);opacity:.6;letter-spacing:.12em;margin-top:-14px;margin-bottom:8px;" id="kwHint">( tap the yellow word )</p>
     <p class="kw-translation" id="kwTrans">that twilight hour when two people are connected — when the sky is neither day nor night, and the boundary between two souls just... disappears 💗</p>
     <p class="accent">you know that magic hour, when the sky turns that impossible orange-pink and the line between two people just... dissolves? that's what this whole year has felt like with you 💗 i didn't have a gift to give you this time, so instead of buying something, i stayed up building you a whole little world. scroll through it slowly, like a comet passing once in a lifetime ✨ there's a game waiting for you, and a little surprise at the very end too 😋</p>
     <button class="btn" onclick="goTo(1)">Cross the threshold <span>&#8594;</span></button>
@@ -1550,8 +1551,12 @@
   (function(){
     var kwEl = document.getElementById('kwToggle');
     var kwTr = document.getElementById('kwTrans');
+    var kwHint = document.getElementById('kwHint');
     if(!kwEl || !kwTr) return;
-    kwEl.onclick = function(){ kwTr.classList.toggle('show'); };
+    kwEl.onclick = function(){
+      kwTr.classList.toggle('show');
+      if(kwHint) kwHint.style.display = 'none';
+    };
   })();
 </script>
 
