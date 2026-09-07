@@ -355,8 +355,8 @@
 
   .kw-translate{display:inline-block;cursor:pointer;border-bottom:1px dashed var(--gold);transition:color .3s ease;}
   .kw-translate:hover{color:var(--gold);}
-  .kw-translation{display:none;font-family:"Cormorant Garamond",serif;font-size:clamp(13px,3vw,16px);color:var(--soft);font-style:italic;margin-top:10px;line-height:1.6;max-width:400px;margin-left:auto;margin-right:auto;animation:kwFadeIn .6s ease;}
-  .kw-translation.show{display:block;}
+  .kw-translation{display:none!important;font-family:"Cormorant Garamond",serif;font-size:clamp(13px,3vw,16px);color:var(--soft);font-style:italic;margin-top:10px;line-height:1.6;max-width:400px;margin-left:auto;margin-right:auto;animation:kwFadeIn .6s ease;}
+  .kw-translation.show{display:block!important;}
   @keyframes kwFadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
 
 
@@ -445,7 +445,7 @@
 
     <div class="doodle tilt" data-tilt><svg viewBox="0 0 100 100"><circle cx="50" cy="55" r="30" fill="#f2c98a" opacity="0.9"/><circle cx="38" cy="48" r="4" fill="#241436"/><circle cx="62" cy="48" r="4" fill="#241436"/><path d="M40 62 Q50 70 60 62" stroke="#241436" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="28" cy="30" r="10" fill="#f2c98a" opacity="0.9"/><circle cx="72" cy="30" r="10" fill="#f2c98a" opacity="0.9"/></svg></div>
     <div class="chapter-tag"><span class="chapter-num">prologue</span><div class="chapter-rule"></div></div>
-    <h1><span class="kw-translate" onclick="var t=document.getElementById('kwTrans');t.classList.toggle('show')">kataware-doki</span>, but make it us</h1>
+    <h1><span class="kw-translate" onclick="document.getElementById('kwTrans').classList.toggle('show')">kataware-doki</span>, but make it us</h1>
     <p class="kw-translation" id="kwTrans">that twilight hour when two people are connected — when the sky is neither day nor night, and the boundary between two souls just... disappears 💗</p>
     <p class="accent">you know that magic hour, when the sky turns that impossible orange-pink and the line between two people just... dissolves? that's what this whole year has felt like with you 💗 i didn't have a gift to give you this time, so instead of buying something, i stayed up building you a whole little world. scroll through it slowly, like a comet passing once in a lifetime ✨ there's a game waiting for you, and a little surprise at the very end too 😋</p>
     <button class="btn" onclick="goTo(1)">Cross the threshold <span>&#8594;</span></button>
