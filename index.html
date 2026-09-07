@@ -283,16 +283,17 @@
   @keyframes confettiFall{0%{opacity:1;transform:translate(0,0) rotate(0deg);}100%{opacity:0;transform:translate(var(--cx),var(--cy)) rotate(var(--cr));}}
 
   /* === SHOOTING STAR REVEAL === */
-  .shooting-star-overlay{position:fixed;inset:0;z-index:15;pointer-events:none;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s ease;}
+  .shooting-star-overlay{position:fixed;inset:0;z-index:15;pointer-events:none;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s ease;background:rgba(5,2,8,0.4);}
   .shooting-star-overlay.active{opacity:1;}
-  .shooting-star-overlay.done{opacity:0;transition:opacity 1.5s ease 2s;}
-  .shooting-star-trail{position:absolute;top:12%;left:-5%;width:6px;height:6px;background:var(--gold);border-radius:50%;box-shadow:0 0 8px 3px rgba(242,201,138,.9),0 0 24px 8px rgba(242,201,138,.4);opacity:0;}
-  .shooting-star-trail::after{content:'';position:absolute;top:2px;right:4px;width:180px;height:2px;background:linear-gradient(90deg,rgba(242,201,138,.8),rgba(242,201,138,.3),transparent);transform:rotate(18deg);transform-origin:right center;border-radius:2px;}
-  .shooting-star-overlay.active .shooting-star-trail{animation:shootingFly 2.2s ease-in forwards;}
-  @keyframes shootingFly{0%{transform:translate(0,0);opacity:0;}8%{opacity:1;}50%{transform:translate(110vw,35vh);opacity:1;}60%{opacity:0;}100%{transform:translate(120vw,42vh);opacity:0;}}
-  .shooting-wish{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',serif;font-size:clamp(18px,4vw,28px);color:var(--gold);text-align:center;opacity:0;transition:opacity 1s ease 1s;line-height:1.6;max-width:80vw;}
+  .shooting-star-overlay.done{opacity:0;transition:opacity 1.8s ease 3.5s;}
+  .shooting-star-trail{position:absolute;top:8%;left:-6%;width:10px;height:10px;background:var(--gold);border-radius:50%;box-shadow:0 0 12px 5px rgba(242,201,138,1),0 0 40px 14px rgba(242,201,138,.5),0 0 80px 28px rgba(242,201,138,.2);opacity:0;}
+  .shooting-star-trail::before{content:'';position:absolute;top:3px;right:4px;width:280px;height:3px;background:linear-gradient(90deg,rgba(242,201,138,1),rgba(242,201,138,.6),rgba(242,201,138,.2),transparent);transform:rotate(18deg);transform-origin:right center;border-radius:2px;}
+  .shooting-star-trail::after{content:'';position:absolute;top:1px;right:8px;width:160px;height:2px;background:linear-gradient(90deg,rgba(251,241,238,.9),rgba(242,201,138,.4),transparent);transform:rotate(20deg);transform-origin:right center;border-radius:2px;}
+  .shooting-star-overlay.active .shooting-star-trail{animation:shootingFly 2.5s ease-in forwards;}
+  @keyframes shootingFly{0%{transform:translate(0,0) scale(0.5);opacity:0;}6%{opacity:1;transform:translate(5vw,3vh) scale(1);}50%{transform:translate(105vw,38vh) scale(1);opacity:1;}58%{opacity:0.3;}100%{transform:translate(120vw,46vh) scale(0.6);opacity:0;}}
+  .shooting-wish{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',serif;font-size:clamp(20px,5vw,32px);color:var(--gold);text-align:center;opacity:0;transition:opacity 1.2s ease 1.2s;line-height:1.7;max-width:85vw;text-shadow:0 0 20px rgba(242,201,138,.3);letter-spacing:.02em;}
   .shooting-star-overlay.active .shooting-wish{opacity:1;}
-  .shooting-star-overlay.done .shooting-wish{opacity:0;transition:opacity 0.6s ease;}
+  .shooting-star-overlay.done .shooting-wish{opacity:0;transition:opacity 0.8s ease;}
 
   /* === 5 THINGS I'D CHANGE ABOUT YOU === */
   .five-things-wrap{display:flex;flex-direction:column;gap:14px;align-items:center;margin-top:18px;}
@@ -300,6 +301,24 @@
   .five-thing.show{opacity:1;transform:translateY(0);}
   .five-thing .thing-num{color:var(--gold);font-weight:600;margin-right:6px;}
   .five-thing .thing-text{color:var(--soft);font-style:italic;}
+
+
+  /* === CAN I KEEP YOU FOREVER === */
+  .forever-wrap{text-align:center;margin-top:30px;}
+  .forever-q{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(26px,6vw,40px);color:var(--cream);margin:0 0 28px;line-height:1.3;opacity:0;transform:translateY(16px);transition:opacity 1s ease, transform 1s ease;}
+  .forever-q.show{opacity:1;transform:translateY(0);}
+  .forever-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;opacity:0;transition:opacity 0.8s ease 0.5s;}
+  .forever-btns.show{opacity:1;}
+  .forever-btn{padding:12px 28px;border-radius:999px;border:1.5px solid rgba(240,184,191,.4);background:rgba(240,184,191,.08);color:var(--cream);font-family:'Manrope',sans-serif;font-size:14px;cursor:pointer;transition:all .3s ease;letter-spacing:.03em;}
+  .forever-btn:hover,.forever-btn:active{background:rgba(240,184,191,.2);border-color:var(--rose);transform:scale(1.05);}
+  .forever-response{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,4.5vw,30px);color:var(--gold);margin-top:28px;opacity:0;transform:translateY(10px);transition:opacity 0.8s ease, transform 0.8s ease;text-align:center;line-height:1.5;}
+  .forever-response.show{opacity:1;transform:translateY(0);}
+
+  /* === FUTURE LETTER FROM ADI === */
+  .future-letter{max-width:480px;margin:60px auto 0;padding:28px 24px;background:rgba(242,201,138,.06);border:1px solid rgba(242,201,138,.15);border-radius:16px;text-align:center;opacity:0;transform:translateY(20px);transition:opacity 1.2s ease, transform 1.2s ease;}
+  .future-letter.show{opacity:1;transform:translateY(0);}
+  .future-letter p{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,3.8vw,20px);color:var(--soft);line-height:1.8;margin:0 0 14px;font-style:italic;}
+  .future-letter .future-sig{font-size:14px;color:var(--gold);letter-spacing:.08em;margin-top:20px;font-style:normal;}
 
 </style>
 </head>
@@ -542,6 +561,14 @@
         <div class="five-thing"><span class="thing-num">5.</span> <span class="thing-text">nothing 💗</span></div>
       </div>
     </div>
+    <div class="forever-wrap" id="foreverWrap">
+      <p class="forever-q" id="foreverQ">Can I keep you forever?</p>
+      <div class="forever-btns" id="foreverBtns">
+        <button class="forever-btn" id="foreverYes">obviously 💗</button>
+        <button class="forever-btn" id="foreverMaybe">can't say no 💛</button>
+      </div>
+      <p class="forever-response" id="foreverResponse"></p>
+    </div>
     <button class="btn" onclick="goTo(9)" style="margin-top:28px;">Keep going <span>&#8594;</span></button>
   </div>
 </section>
@@ -605,7 +632,17 @@
     <div class="signature">adi &amp; shubi 💗</div>
     </div>
   </section>
-  <section data-index="10" style="min-height:60vh;">
+  <section data-index="10" style="min-height:auto;padding-top:8vh;">
+    <div class="future-letter" id="futureLetter">
+      <p>if you're reading this in some future year,</p>
+      <p>i still love you.</p>
+      <p>i always will.</p>
+      <p>nothing changes that — not time, not distance, not anything.</p>
+      <p>you were the best thing that ever happened to me, and every single day i spend with you proves that again.</p>
+      <p class="future-sig">— adi, whenever you read this 🤍</p>
+    </div>
+  </section>
+  <section data-index="11" style="min-height:60vh;">
     <div class="credits">
       <div class="credits-line" data-delay="0">a film by</div>
       <div class="credits-line big" data-delay="200">Adi</div>
@@ -1146,8 +1183,8 @@
         }
       });
     },{threshold:[0.3]});
-    creditLines[0].closest('section').setAttribute('data-index','10');
-    creditsObserver.observe(document.querySelector('[data-index="10"]'));
+    creditLines[0].closest('section').setAttribute('data-index','11');
+    creditsObserver.observe(document.querySelector('[data-index="11"]'));
   }
 
 
@@ -1208,6 +1245,49 @@
       }
     }, 800);
   });
+
+
+  /* === CAN I KEEP YOU FOREVER? === */
+  var foreverBtns = document.getElementById('foreverBtns');
+  var foreverResponse = document.getElementById('foreverResponse');
+  if(foreverBtns){
+    document.getElementById('foreverYes').addEventListener('click', function(){
+      foreverResponse.textContent = "i knew you'd say that. i love you too, always 🤍";
+      foreverResponse.classList.add('show');
+      foreverBtns.style.display = 'none';
+      for(var i=0;i<15;i++) setTimeout(function(){ spawnHeart(); }, i*60);
+    });
+    document.getElementById('foreverMaybe').addEventListener('click', function(){
+      foreverResponse.textContent = "that's basically a yes. i'm holding you to it 🤗💗";
+      foreverResponse.classList.add('show');
+      foreverBtns.style.display = 'none';
+      for(var i=0;i<15;i++) setTimeout(function(){ spawnHeart(); }, i*60);
+    });
+    var foreverObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          document.getElementById('foreverQ').classList.add('show');
+          setTimeout(function(){ foreverBtns.classList.add('show'); }, 500);
+          foreverObs.disconnect();
+        }
+      });
+    },{threshold:[0.3]});
+    foreverObs.observe(document.getElementById('foreverWrap'));
+  }
+
+  /* === FUTURE LETTER REVEAL === */
+  var futureLetter = document.getElementById('futureLetter');
+  if(futureLetter){
+    var futureObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          futureLetter.classList.add('show');
+          futureObs.disconnect();
+        }
+      });
+    },{threshold:[0.2]});
+    futureObs.observe(futureLetter);
+  }
 
   /* === 5 THINGS REVEAL ON SCROLL === */
   var fiveThings = document.querySelectorAll('.five-thing');
