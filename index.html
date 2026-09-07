@@ -353,6 +353,37 @@
   .sticker.mid{top:50%;left:50%;width:clamp(50px,12vw,75px);transform:translateX(-50%);}
   .sticker img{width:100%;height:auto;border-radius:12px;object-fit:contain;}
 
+
+  /* === OPEN WHEN LETTERS === */
+  .open-when-title{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(20px,5vw,28px);color:var(--rose);margin-bottom:24px;letter-spacing:.04em;}
+  .open-when-grid{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;max-width:520px;margin:0 auto;}
+  .open-when-card{position:relative;flex:1 1 140px;max-width:160px;min-height:130px;border-radius:14px;cursor:pointer;perspective:600px;transition:transform .2s ease;}
+  .open-when-card:active{transform:scale(.97);}
+  .ow-front,.ow-back{position:absolute;inset:0;border-radius:14px;backface-visibility:hidden;transition:transform .5s ease;display:flex;align-items:center;justify-content:center;padding:14px;text-align:center;}
+  .ow-front{background:linear-gradient(145deg,rgba(242,201,138,.12),rgba(240,184,191,.1));border:1px solid rgba(242,201,138,.2);}
+  .ow-front .ow-icon{font-size:28px;display:block;margin-bottom:8px;}
+  .ow-front .ow-label{font-family:"Manrope",sans-serif;font-size:12px;letter-spacing:.08em;color:var(--soft);line-height:1.4;}
+  .ow-back{background:linear-gradient(145deg,rgba(240,184,191,.15),rgba(232,99,122,.08));border:1px solid rgba(240,184,191,.3);transform:rotateY(180deg);font-family:"Cormorant Garamond",serif;font-size:clamp(13px,3vw,15px);color:var(--cream);line-height:1.6;font-style:italic;}
+  .open-when-card.flipped .ow-front{transform:rotateY(180deg);}
+  .open-when-card.flipped .ow-back{transform:rotateY(0deg);}
+  .ow-close{position:absolute;top:6px;right:10px;font-size:16px;cursor:pointer;color:var(--gold);opacity:.6;transition:opacity .2s ease;z-index:2;}
+  .ow-close:hover{opacity:1;}
+
+  /* === MILESTONE COUNTER === */
+  .milestone-wrap{margin-top:28px;text-align:center;opacity:0;transition:opacity 1s ease .8s;}
+  .milestone-wrap.visible{opacity:1;}
+  .milestone-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);margin-bottom:6px;}
+  .milestone-text{font-family:"Cormorant Garamond",serif;font-size:clamp(16px,4vw,22px);color:var(--gold);line-height:1.5;}
+  .milestone-text .ms-days{display:inline-block;font-weight:600;color:var(--cream);font-size:clamp(28px,7vw,44px);vertical-align:middle;margin-right:6px;}
+
+  /* === SHARE BUTTON === */
+  .share-wrap{text-align:center;margin-top:28px;opacity:0;transition:opacity 1s ease .6s;}
+  .share-wrap.visible{opacity:1;}
+  .share-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 24px;border-radius:999px;border:1.5px solid rgba(240,184,191,.4);background:rgba(240,184,191,.08);color:var(--cream);font-family:"Manrope",sans-serif;font-size:13px;cursor:pointer;transition:all .25s ease;letter-spacing:.04em;}
+  .share-btn:hover,.share-btn:active{background:rgba(240,184,191,.18);border-color:var(--rose);transform:scale(1.04);}
+  .share-btn svg{width:16px;height:16px;fill:var(--cream);}
+  .share-msg{font-size:12px;color:var(--gold);margin-top:8px;font-style:italic;min-height:1.2em;}
+
 </style>
 </head>
 <body>
@@ -368,6 +399,11 @@
     <div class="intro-counter"><span class="days-num" id="daysNum"></span><span class="days-label">days together</span></div>
     <p class="intro-tap">tap anywhere to begin</p>
   </div>
+
+    <div class="milestone-wrap" id="milestoneWrap">
+      <div class="milestone-label">next milestone</div>
+      <div class="milestone-text" id="milestoneText"></div>
+    </div>
 </div>
 
 <div class="shooting-star-overlay" id="shootingStarOverlay">
@@ -701,6 +737,14 @@
       <div style="text-align:center;"><button class="btn" id="sendReplyBtn">Send <span>💗</span></button></div>
       <p class="reply-msg" id="replyStatus" style="text-align:center;"></p>
       <div id="savedReply"></div>
+
+    <div class="share-wrap" id="shareWrap">
+      <button class="share-btn" id="shareBtn" onclick="sharePage()">
+        <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM12 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3-9H9V6c0-1.66 1.34-3 3-3s3 1.34 3 3v2z"/></svg>
+        share to instagram
+      </button>
+      <p class="share-msg" id="shareMsg"></p>
+    </div>
     </div>
                 <div class="time-spent" id="timeSpent"></div>
     <div class="signature">adi &amp; shubi 💗</div>
@@ -714,6 +758,44 @@
       <p>nothing changes that — not time, not distance, not anything.</p>
       <p>you were the best thing that ever happened to me, and every single day i spend with you proves that again.</p>
       <p class="future-sig">— adi, whenever you read this 🤍</p>
+  <section data-index="10b" style="min-height:auto;padding:6vh 6vw 4vh;">
+    <div class="inner" style="opacity:1;transform:none;">
+      <div class="open-when-title">open when...</div>
+      <div class="open-when-grid">
+        <div class="open-when-card" onclick="this.classList.toggle('flipped')">
+          <div class="ow-front"><span class="ow-icon">&#128140;</span><span class="ow-label">open when<br>you miss me</span></div>
+          <div class="ow-back"><span class="ow-close" onclick="event.stopPropagation();this.closest('.open-when-card').classList.remove('flipped')">&#215;</span>i carry you in every thought, every breath. missing you is just proof that you&rsquo;re worth missing.</div>
+        </div>
+        <div class="open-when-card" onclick="this.classList.toggle('flipped')">
+          <div class="ow-front"><span class="ow-icon">&#127783;</span><span class="ow-label">open when<br>you&rsquo;re sad</span></div>
+          <div class="ow-back"><span class="ow-close" onclick="event.stopPropagation();this.closest('.open-when-card').classList.remove('flipped')">&#215;</span>hey. i know it&rsquo;s hard right now. but you&rsquo;re the strongest person i know, and i&rsquo;m always here &mdash; even when i can&rsquo;t hold you.</div>
+        </div>
+        <div class="open-when-card" onclick="this.classList.toggle('flipped')">
+          <div class="ow-front"><span class="ow-icon">&#128545;</span><span class="ow-label">open when<br>you&rsquo;re mad at me</span></div>
+          <div class="ow-back"><span class="ow-close" onclick="event.stopPropagation();this.closest('.open-when-card').classList.remove('flipped')">&#215;</span>i&rsquo;m sorry. i&rsquo;m still learning how to love you right, and i promise i&rsquo;ll never stop trying. you deserve the world.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+    </div>
+  </section>
+  <section data-index="10b" style="min-height:auto;padding:6vh 6vw 4vh;">
+    <div class="inner" style="opacity:1;transform:none;">
+      <div class="open-when-title">open when...</div>
+      <div class="open-when-grid">
+        <div class="open-when-card" onclick="this.classList.toggle('flipped')">
+          <div class="ow-front"><span class="ow-icon">&#128140;</span><span class="ow-label">open when<br>you miss me</span></div>
+          <div class="ow-back"><span class="ow-close" onclick="event.stopPropagation();this.closest('.open-when-card').classList.remove('flipped')">&#215;</span>i carry you in every thought, every breath. missing you is just proof that you&rsquo;re worth missing.</div>
+        </div>
+        <div class="open-when-card" onclick="this.classList.toggle('flipped')">
+          <div class="ow-front"><span class="ow-icon">&#127783;</span><span class="ow-label">open when<br>you&rsquo;re sad</span></div>
+          <div class="ow-back"><span class="ow-close" onclick="event.stopPropagation();this.closest('.open-when-card').classList.remove('flipped')">&#215;</span>hey. i know it&rsquo;s hard right now. but you&rsquo;re the strongest person i know, and i&rsquo;m always here &mdash; even when i can&rsquo;t hold you.</div>
+        </div>
+        <div class="open-when-card" onclick="this.classList.toggle('flipped')">
+          <div class="ow-front"><span class="ow-icon">&#128545;</span><span class="ow-label">open when<br>you&rsquo;re mad at me</span></div>
+          <div class="ow-back"><span class="ow-close" onclick="event.stopPropagation();this.closest('.open-when-card').classList.remove('flipped')">&#215;</span>i&rsquo;m sorry. i&rsquo;m still learning how to love you right, and i promise i&rsquo;ll never stop trying. you deserve the world.</div>
+        </div>
+      </div>
     </div>
   </section>
   <section data-index="11" style="min-height:60vh;">
@@ -1405,6 +1487,71 @@
     },{threshold:[0.3]});
     fiveObserver.observe(document.getElementById('fiveThings'));
   }
+
+
+  /* === MILESTONE COUNTER === */
+  (function(){
+    var ANNIVERSARY = new Date(2025, 8, 8); // Sep 8 2025 (month is 0-indexed)
+    var milestones = [
+      {days:100, label:"100 days together"},
+      {days:200, label:"200 days of love"},
+      {days:365, label:"our 1 year!"},
+      {days:500, label:"500 days & counting"},
+      {days:730, label:"2 whole years"},
+      {days:1000, label:"1000 days of us"},
+      {days:1461, label:"4 years — forever"}
+    ];
+    var msText = document.getElementById('milestoneText');
+    var msWrap = document.getElementById('milestoneWrap');
+    var today = new Date();
+    var diffMs = today - ANNIVERSARY;
+    var daysPassed = Math.floor(diffMs / (1000*60*60*24));
+    if(daysPassed < 0) daysPassed = 0;
+
+    var nextMs = null;
+    for(var i=0;i<milestones.length;i++){
+      if(milestones[i].days > daysPassed){ nextMs = milestones[i]; break; }
+    }
+    if(msText){
+      if(nextMs){
+        var left = nextMs.days - daysPassed;
+        msText.innerHTML = '<span class="ms-days">' + left + '</span> days until<br>' + nextMs.label;
+      } else {
+        msText.innerHTML = '<span class="ms-days">' + daysPassed + '</span> days together<br>and every one a gift';
+      }
+    }
+    // show after a delay
+    setTimeout(function(){ if(msWrap) msWrap.classList.add('visible'); }, 2000);
+  })();
+
+  /* === SHARE BUTTON === */
+  function sharePage(){
+    var url = window.location.href;
+    var text = 'hey, adi made something for you \u2764\ufe0f';
+    var shareWrap = document.getElementById('shareWrap');
+    var shareMsg = document.getElementById('shareMsg');
+
+    if(navigator.share){
+      navigator.share({title:'for Shubhi \u2764\ufe0f', text:text, url:url}).then(function(){
+        if(shareMsg) shareMsg.textContent = '\u2714\ufe0f link copied!';
+      }).catch(function(){});
+    } else {
+      // fallback: copy to clipboard
+      if(navigator.clipboard){
+        navigator.clipboard.writeText(url).then(function(){
+          if(shareMsg) shareMsg.textContent = '\u2714\ufe0f link copied! paste it in your instagram story';
+        });
+      } else {
+        // last resort
+        prompt('copy this link and share it:', url);
+      }
+    }
+  }
+  // show share button after entering the page
+  setTimeout(function(){
+    var sw = document.getElementById('shareWrap');
+    if(sw) sw.classList.add('visible');
+  }, 4000);
 
 </script>
 
