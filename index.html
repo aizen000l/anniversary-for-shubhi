@@ -445,7 +445,7 @@
 
     <div class="doodle tilt" data-tilt><svg viewBox="0 0 100 100"><circle cx="50" cy="55" r="30" fill="#f2c98a" opacity="0.9"/><circle cx="38" cy="48" r="4" fill="#241436"/><circle cx="62" cy="48" r="4" fill="#241436"/><path d="M40 62 Q50 70 60 62" stroke="#241436" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="28" cy="30" r="10" fill="#f2c98a" opacity="0.9"/><circle cx="72" cy="30" r="10" fill="#f2c98a" opacity="0.9"/></svg></div>
     <div class="chapter-tag"><span class="chapter-num">prologue</span><div class="chapter-rule"></div></div>
-    <h1><span class="kw-translate" id="kwToggle">kataware-doki</span>, but make it us</h1>
+    <h1><span class="kw-translate" id="kwToggle" style="cursor:pointer;">kataware-doki</span>, but make it us</h1>
     <p class="kw-translation" id="kwTrans">that twilight hour when two people are connected — when the sky is neither day nor night, and the boundary between two souls just... disappears 💗</p>
     <p class="accent">you know that magic hour, when the sky turns that impossible orange-pink and the line between two people just... dissolves? that's what this whole year has felt like with you 💗 i didn't have a gift to give you this time, so instead of buying something, i stayed up building you a whole little world. scroll through it slowly, like a comet passing once in a lifetime ✨ there's a game waiting for you, and a little surprise at the very end too 😋</p>
     <button class="btn" onclick="goTo(1)">Cross the threshold <span>&#8594;</span></button>
@@ -922,15 +922,7 @@
   },{threshold:[0,0.05,0.5]});
   sections.forEach(s=>observer.observe(s));
 
-  // kataware-doki translation toggle
-  var kwToggle = document.getElementById('kwToggle');
-  var kwTrans = document.getElementById('kwTrans');
-  if(kwToggle && kwTrans){
-    kwToggle.addEventListener('click', function(e){
-      e.stopPropagation();
-      kwTrans.classList.toggle('show');
-    });
-  }
+
 
   const qaData=[
     {q:"What's the memory I replay the most?",a:"The first kiss, obviously. The clumsy peck, then me fixing it properly 😋 That's the one 💗"},
@@ -1553,6 +1545,14 @@
     if(sw) sw.classList.add('visible');
   }, 4000);
 
+
+  // kataware-doki toggle
+  (function(){
+    var kwEl = document.getElementById('kwToggle');
+    var kwTr = document.getElementById('kwTrans');
+    if(!kwEl || !kwTr) return;
+    kwEl.onclick = function(){ kwTr.classList.toggle('show'); };
+  })();
 </script>
 
 </body>
