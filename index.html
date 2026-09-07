@@ -156,6 +156,16 @@
     cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .3s ease;}
   .music-toggle:hover{transform:scale(1.08);}
 
+  .preloader{position:fixed;inset:0;background:#050208;z-index:999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;transition:opacity .8s ease, visibility .8s ease;}
+  .preloader.done{opacity:0;visibility:hidden;}
+  .preloader-heart{width:56px;height:56px;animation:preloadBeat 1.1s ease-in-out infinite;}
+  .preloader-heart svg{width:100%;height:100%;fill:#e8637a;filter:drop-shadow(0 0 14px rgba(232,99,122,.8));}
+  @keyframes preloadBeat{0%,100%{transform:scale(1);}15%{transform:scale(1.22);}30%{transform:scale(1);}45%{transform:scale(1.15);}}
+  .preloader-ring{width:70px;height:70px;border:2px solid rgba(242,201,138,.25);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite;display:flex;align-items:center;justify-content:center;}
+  .preloader-ring .preloader-heart{width:34px;height:34px;animation:preloadBeat 1.1s ease-in-out infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .preloader-text{margin:0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--soft);letter-spacing:.06em;animation:fadepulse 1.6s ease-in-out infinite;}
+  @keyframes fadepulse{0%,100%{opacity:.5;}50%{opacity:1;}}
   .intro-cover{position:fixed;inset:0;background:#050208;z-index:10;display:flex;align-items:center;
     justify-content:center;cursor:pointer;transition:opacity 1.1s ease, visibility 1.1s;padding:4vh 6vw;}
   .intro-cover.hide{opacity:0;visibility:hidden;}
@@ -336,6 +346,10 @@
 </head>
 <body>
 
+<div class="preloader" id="preloader">
+  <div class="preloader-ring"><div class="preloader-heart"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.1C.4 8.6 2 5 5.6 5c2.1 0 3.6 1.2 4.4 2.6C10.8 6.2 12.3 5 14.4 5 18 5 19.6 8.6 22 11.9 19.5 16.4 12 21 12 21z"/></svg></div></div>
+  <p class="preloader-text">loading our memories...</p>
+</div>
 <div class="intro-cover" id="introCover">
   <div class="intro-inner">
     <p class="intro-eyebrow">a film in six chapters</p>
@@ -712,6 +726,19 @@
       });
     }, {threshold:0.25});
     ambVids.forEach(function(v){ io.observe(v); });
+  })();
+
+  /* === PRELOADER === */
+  (function(){
+    var pre = document.getElementById('preloader');
+    function hidePre(){
+      if(pre){ pre.classList.add('done'); setTimeout(function(){ if(pre.parentNode) pre.parentNode.removeChild(pre); }, 900); }
+    }
+    if(document.readyState === 'complete'){ setTimeout(hidePre, 400); }
+    else {
+      window.addEventListener('load', function(){ setTimeout(hidePre, 650); });
+      setTimeout(hidePre, 4000); // safety fallback
+    }
   })();
 
   /* === VIBRATION ON OPEN === */
