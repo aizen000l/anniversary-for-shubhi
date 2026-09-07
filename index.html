@@ -281,6 +281,26 @@
   .confetti-wrap{position:fixed;inset:0;z-index:20;pointer-events:none;}
   .confetti-piece{position:absolute;width:8px;height:8px;border-radius:2px;opacity:1;}
   @keyframes confettiFall{0%{opacity:1;transform:translate(0,0) rotate(0deg);}100%{opacity:0;transform:translate(var(--cx),var(--cy)) rotate(var(--cr));}}
+
+  /* === SHOOTING STAR REVEAL === */
+  .shooting-star-overlay{position:fixed;inset:0;z-index:15;pointer-events:none;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s ease;}
+  .shooting-star-overlay.active{opacity:1;}
+  .shooting-star-overlay.done{opacity:0;transition:opacity 1.5s ease 2s;}
+  .shooting-star-trail{position:absolute;top:12%;left:-5%;width:6px;height:6px;background:var(--gold);border-radius:50%;box-shadow:0 0 8px 3px rgba(242,201,138,.9),0 0 24px 8px rgba(242,201,138,.4);opacity:0;}
+  .shooting-star-trail::after{content:'';position:absolute;top:2px;right:4px;width:180px;height:2px;background:linear-gradient(90deg,rgba(242,201,138,.8),rgba(242,201,138,.3),transparent);transform:rotate(18deg);transform-origin:right center;border-radius:2px;}
+  .shooting-star-overlay.active .shooting-star-trail{animation:shootingFly 2.2s ease-in forwards;}
+  @keyframes shootingFly{0%{transform:translate(0,0);opacity:0;}8%{opacity:1;}50%{transform:translate(110vw,35vh);opacity:1;}60%{opacity:0;}100%{transform:translate(120vw,42vh);opacity:0;}}
+  .shooting-wish{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',serif;font-size:clamp(18px,4vw,28px);color:var(--gold);text-align:center;opacity:0;transition:opacity 1s ease 1s;line-height:1.6;max-width:80vw;}
+  .shooting-star-overlay.active .shooting-wish{opacity:1;}
+  .shooting-star-overlay.done .shooting-wish{opacity:0;transition:opacity 0.6s ease;}
+
+  /* === 5 THINGS I'D CHANGE ABOUT YOU === */
+  .five-things-wrap{display:flex;flex-direction:column;gap:14px;align-items:center;margin-top:18px;}
+  .five-thing{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,4vw,24px);color:var(--cream);opacity:0;transform:translateY(12px);transition:opacity 0.6s ease, transform 0.6s ease;text-align:center;}
+  .five-thing.show{opacity:1;transform:translateY(0);}
+  .five-thing .thing-num{color:var(--gold);font-weight:600;margin-right:6px;}
+  .five-thing .thing-text{color:var(--soft);font-style:italic;}
+
 </style>
 </head>
 <body>
@@ -510,8 +530,19 @@
   <div class="inner">
     <div class="chapter-tag"><span class="chapter-num">an interlude</span><div class="chapter-rule"></div></div>
     <h2>Do you remember me?</h2>
-    <p>In the movie, they forget each other's names but somehow never forget the feeling. Let's test if you remember the feeling too 😋 Tap each cards to flip it.</p>
+    <p>In the movie, they forget each other's names but somehow never forget the feeling. Let's test if you remember the feeling too 😋 Tap each card to flip it.</p>
     <div class="qa-wrap" id="qaWrap"></div>
+    <div style="margin-top:36px;text-align:center;">
+      <p style="color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:clamp(22px,4.5vw,30px);font-style:italic;margin-bottom:4px;">5 things I'd change about you</p>
+      <div class="five-things-wrap" id="fiveThings">
+        <div class="five-thing"><span class="thing-num">1.</span> <span class="thing-text">nothing</span></div>
+        <div class="five-thing"><span class="thing-num">2.</span> <span class="thing-text">nothing</span></div>
+        <div class="five-thing"><span class="thing-num">3.</span> <span class="thing-text">nothing</span></div>
+        <div class="five-thing"><span class="thing-num">4.</span> <span class="thing-text">nothing</span></div>
+        <div class="five-thing"><span class="thing-num">5.</span> <span class="thing-text">nothing 💗</span></div>
+      </div>
+    </div>
+    <button class="btn" onclick="goTo(9)" style="margin-top:28px;">Keep going <span>&#8594;</span></button>
   </div>
 </section>
 
@@ -1164,6 +1195,35 @@
   }
 
 
+
+
+  /* === SHOOTING STAR ON INTRO OPEN === */
+  introCover.addEventListener('click', function(){
+    setTimeout(function(){
+      var overlay = document.getElementById('shootingStarOverlay');
+      if(overlay){
+        overlay.classList.add('active');
+        setTimeout(function(){ overlay.classList.add('done'); }, 3000);
+        setTimeout(function(){ overlay.style.display='none'; }, 5000);
+      }
+    }, 800);
+  });
+
+  /* === 5 THINGS REVEAL ON SCROLL === */
+  var fiveThings = document.querySelectorAll('.five-thing');
+  if(fiveThings.length){
+    var fiveObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          fiveThings.forEach(function(item, i){
+            setTimeout(function(){ item.classList.add('show'); }, i * 400);
+          });
+          fiveObserver.disconnect();
+        }
+      });
+    },{threshold:[0.3]});
+    fiveObserver.observe(document.getElementById('fiveThings'));
+  }
 
 </script>
 
