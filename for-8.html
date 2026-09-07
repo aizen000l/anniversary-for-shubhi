@@ -104,6 +104,19 @@
   .polaroid:hover{transform:rotate(0deg) scale(1.03);}
   .polaroid img{width:100%;display:block;border-radius:2px;}
 
+  .photo-grid{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;max-width:560px;margin:26px auto 0;}
+  .photo-grid .polaroid{margin:0;flex:0 1 150px;}
+  .photo-grid .polaroid img{width:100%;height:130px;object-fit:cover;display:block;border-radius:2px;}
+  .photo-grid .polaroid:nth-child(1){transform:rotate(-5deg);}
+  .photo-grid .polaroid:nth-child(2){transform:rotate(3deg);margin-top:6px;}
+  .photo-grid .polaroid:nth-child(3){transform:rotate(-2deg);}
+  .photo-grid .polaroid:nth-child(4){transform:rotate(4deg);margin-top:8px;}
+  .video-frame{margin:22px auto 0;width:100%;max-width:420px;border-radius:14px;overflow:hidden;
+    border:1px solid rgba(240,184,191,.4);box-shadow:0 10px 26px rgba(0,0,0,.3);}
+  .video-frame video{width:100%;display:block;max-height:420px;object-fit:cover;}
+  .media-caption{margin:10px auto 0;text-align:center;font-size:12px;font-style:italic;color:var(--soft);}
+  @media(max-width:600px){.photo-grid .polaroid{flex:0 1 42%;}.photo-grid .polaroid img{height:110px;}}
+
   .heart{margin:0 auto 22px;width:34px;height:34px;}
   .heart svg{width:100%;height:100%;fill:var(--rose);opacity:.85;}
 
@@ -386,6 +399,7 @@
   <div class="inner">
     <div class="chapter-tag"><span class="chapter-num">chapter one</span><div class="chapter-rule"></div></div>
     <h2>Two names, tangled by fate</h2>
+    <div class="polaroid" style="width:210px;"><img src="media/photo1.jpg" alt="us" loading="lazy"></div>
     <p>hum dono pehle best friends the, koi plan nahi tha, koi script nahi thi, bas itna tha ki hum ek dusre ko baar baar text karte rehte the, milte rehte the, aur baaki sab chhodke bhi ek dusre ke liye time nikaal lete the😭 mujhe pata hi nahi chala kab yeh sab shuru hua fr fr, sab kuch itna normal tha ki 'friend' wala tag kab peeche chhoot gaya, pata hi nahi chala🫂 ab peeche dekhta hun toh lagta hai wo saare boring, normal se din hi actually hamari shuruaat the, koi bada moment nahi tha, bas hum dono the✨ aur main bahut lucky feel karta hun ki tu meri hai, sab kuch kitna simple tha lekin ab sochta hun toh utna hi special lagta hai🛐</p>
     <div class="doodle tilt" data-tilt><svg viewBox="0 0 100 100"><circle cx="35" cy="55" r="22" fill="#f0b8bf" opacity="0.9"/><circle cx="65" cy="55" r="22" fill="#f2c98a" opacity="0.9"/><circle cx="27" cy="50" r="3" fill="#241436"/><circle cx="43" cy="50" r="3" fill="#241436"/><circle cx="57" cy="50" r="3" fill="#241436"/><circle cx="73" cy="50" r="3" fill="#241436"/></svg></div>
     <button class="btn" onclick="goTo(2)">Keep going <span>&#8594;</span></button>
@@ -404,6 +418,8 @@
     <div class="chapter-tag"><span class="chapter-num">chapter two</span><div class="chapter-rule"></div></div>
     <h2>Die With A Smile</h2>
     <p>phir ek din bas aise hi maine tujhe wo reel bheja tha 'die with a smile' wala, koi bada reason nahi tha bas vibe thi😭 thodi der baad maine khud hi ek story bhi laga di, JVKE wala gaana daal ke, jaise bina bole hi kuch keh raha hun✨ humne is baare mein kabhi ek dusre se kuch bola nahi, zarurat bhi nahi thi, dono ko pata tha ki kuch toh badal gaya hai hum dono ke beech, wahi feeling jaise toofan aane se pehle hi pata chal jaata hai🫂 wahi din tha jab pura kissa hi "us" ki taraf mud gaya tha, mujhe abhi bhi wo din bilkul clearly yaad hai💗</p>
+    <div class="video-frame"><video src="media/video1.mp4" loop muted playsinline autoplay preload="metadata"></video></div>
+    <div class="media-caption">the reel that started it all 🎧</div>
     <button class="btn" onclick="goTo(3)">Keep going <span>&#8594;</span></button>
   </div>
 </section>
@@ -415,6 +431,7 @@
   <div class="inner">
     <div class="chapter-tag"><span class="chapter-num">chapter three</span><div class="chapter-rule"></div></div>
     <h2>The first kiss</h2>
+    <div class="polaroid" style="width:210px;transform:rotate(4deg);"><img src="media/photo2.jpg" alt="us" loading="lazy"></div>
     <p>hum dono bas aise hi baithe the ek dusre ke paas, kuch plan nahi tha, achanak tune itni softly peck kar diya ki mujhe pehle pata hi nahi chala💗 aur phir main, apni poori menace energy mein, bola "yeh tarika nahi hai" aur uske baad maine sahi se kiya, jaise actually hona chahiye tha😋 pure ek saal ki memories mein se, yehi wo choti si, bina plan ki, thodi si chaotic moment hai jise main sabse zyada baar sochta hun, agar ho sake toh isi ko loop pe jeena chahta hun😭 aaj bhi jab sochta hun toh khud hi idiot jaisa smile aa jaata hai</p>
     <div class="doodle tilt" data-tilt><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="28" fill="#f0b8bf" opacity="0.9"/><path d="M50 38c-3-6-13-6-15 2-2 8 15 20 15 20s17-12 15-20c-2-8-12-8-15-2z" fill="#e8637a" opacity="0.85"/></svg></div>
     <button class="btn" onclick="goTo(4)">Keep going <span>&#8594;</span></button>
@@ -511,10 +528,17 @@
     <div class="timeline">
       <div class="timeline-rail"></div>
       <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-label">where it started</div><div class="timeline-text">two best friends who couldn't stop texting each other</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-label">us, then</div><div class="timeline-text">little moments that were actually the beginning ✨</div></div>
+      <div class="photo-grid">
+        <div class="polaroid"><img src="media/photo3.jpg" alt="us" loading="lazy"></div>
+        <div class="polaroid"><img src="media/photo4.jpg" alt="us" loading="lazy"></div>
+      </div>
       <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-label">that reel</div><div class="timeline-text">he sent the "die with a smile" reel, everything changed</div></div>
       <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-label">the story</div><div class="timeline-text">he posted the JVKE story, both felt something shift</div></div>
       <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-label">the first kiss</div><div class="timeline-text">she pecked, he said "yeh tarika nahi hai" — then made it right 😋</div></div>
       <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-label">today</div><div class="timeline-text">one year later, still choosing each other every single day 🤍</div></div>
+      <div class="video-frame" style="margin:20px 0 8px 50px;"><video src="media/video2.mp4" controls playsinline preload="metadata"></video></div>
+      <div class="media-caption" style="margin-left:50px;">a little clip of us 🎬</div>
       <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-label">forever?</div><div class="timeline-text">we're just getting started ✨</div></div>
     </div>
     <button class="btn" onclick="goTo(7)">Keep going <span>&#8594;</span></button>
@@ -677,6 +701,20 @@
       }
     },300);
   });
+
+  /* === AMBIENT VIDEO ONLY WHILE VISIBLE (avoids lag) === */
+  (function(){
+    var ambVids = document.querySelectorAll('video[loop][autoplay]');
+    if(!ambVids.length || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.play().catch(function(){}); }
+        else { en.target.pause(); }
+      });
+    }, {threshold:0.25});
+    ambVids.forEach(function(v){ io.observe(v); });
+  })();
+
   /* === VIBRATION ON OPEN === */
   var vibeToast = document.getElementById('vibeToast');
   introCover.addEventListener('click', function(){
